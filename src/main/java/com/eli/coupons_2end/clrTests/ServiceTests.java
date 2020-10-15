@@ -14,13 +14,12 @@ import com.eli.coupons_2end.service.CompanyService;
 import com.eli.coupons_2end.service.CustomerService;
 import com.eli.coupons_2end.utils.HeadersUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
-public class ServiceTests implements CommandLineRunner {
+public class ServiceTests {
 
     @Autowired
     AdminService adminService;
@@ -31,18 +30,12 @@ public class ServiceTests implements CommandLineRunner {
     @Autowired
     CouponRepository couponRepository;
 
-    @Override
-    public void run(String... args) throws Exception {
-        adminServiceTests(this.adminService);
-        companyServiceTests(this.companyService);
-        customerServiceTests(this.customerService);
-
-    }
 
     public void adminServiceTests(AdminService adminService) {
         System.out.println("*****************************************************************************************************************************************************************************************************************************************************************");
         System.out.println(HeadersUtil.ADMIN_SERVICE_TESTS);
         System.out.println("*****************************************************************************************************************************************************************************************************************************************************************");
+        AdminService adminService1 = adminService;
         System.out.println(" === Successful login ===");
         try {
             System.out.println(adminService.login("admin@admin.com", "admin"));
@@ -322,7 +315,7 @@ public class ServiceTests implements CommandLineRunner {
     public void companyServiceTests(CompanyService companyService) throws DoesNotExistException {
         System.out.println(HeadersUtil.COMPANY_SERVICE_TESTS);
         System.out.println("*****************************************************************************************************************************************************************************************************************************************************************");
-
+        CompanyService companyService1 = companyService;
 
         System.out.println(" === Successful login ===");
         try {
@@ -503,7 +496,7 @@ public class ServiceTests implements CommandLineRunner {
     public void customerServiceTests(CustomerService customerService) {
         System.out.println(HeadersUtil.CUSTOMER_SERVICE_TESTS);
         System.out.println("*****************************************************************************************************************************************************************************************************************************************************************");
-
+        CustomerService customerService1 = customerService;
         System.out.println(" === Successful login ===");
         try {
             System.out.println(customerService.login("test_customer@customer.com", "customer"));
