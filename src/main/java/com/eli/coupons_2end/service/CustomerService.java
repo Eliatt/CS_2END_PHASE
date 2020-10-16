@@ -63,7 +63,6 @@ public class CustomerService extends ClientService {
             Customer customer = customerRepository.getOne(this.customerId);
             customer.getCoupons().add(coupon);
             customerRepository.saveAndFlush(customer);
-//			couponsRepo.addCouponPurchase(this.customerID, c1.getId());
             return true;
         }
     }

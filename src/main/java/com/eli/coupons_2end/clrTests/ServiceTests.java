@@ -106,7 +106,7 @@ public class ServiceTests {
             System.out.println(e.getMessage());
         }
         candidate3.setName("Red Sea Resort");
-        candidate3.setPassword("888888");
+        candidate3.setPassword("*****");
         candidate3.setEmail("rs@resort.com");
         try {
             adminService.updateCompany(candidate3);
@@ -523,8 +523,21 @@ public class ServiceTests {
 
         System.out.println(" === Add coupon purchase ===");
         Coupon toAdd = couponRepository.getOne(1);
+        Coupon toAdd2 = couponRepository.getOne(2);
         try {
             customerService.AddCouponPurchase(toAdd);
+            customerService.AddCouponPurchase(toAdd2);
+            System.out.println("Successful Coupons Purchase");
+        } catch (FailOperationException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.println(" === Unsuccessful Add coupon purchase attempt ===");
+        Coupon toAdd3 = couponRepository.getOne(5);
+        try {
+            customerService.AddCouponPurchase(toAdd3);
+            System.out.println("Successful Coupons Purchase");
         } catch (FailOperationException e) {
             System.out.println(e.getMessage());
         }
