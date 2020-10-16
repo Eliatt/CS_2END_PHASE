@@ -392,6 +392,23 @@ public class ServiceTests {
         }
 
 
+        Coupon coupon7 = new Coupon(
+                1,
+                Category.SHOPPING,
+                "Cafe Cafe",
+                "Continental Breakfast",
+                LocalDate.now(),
+                LocalDate.now().plusYears(1),
+                100,
+                49.99,
+                "https://cdn.pixabay.com/photo/2016/11/06/23/16/breakfast-1804436_960_720.jpg");
+        try {
+            companyService.addCoupon(coupon7);
+        } catch (FailOperationException e) {
+            System.out.println(e.getMessage());
+        }
+
+
         System.out.println("=== Add Coupon. Case: wrong company ID === ");
         Coupon coupon5 = new Coupon(
                 3,
@@ -434,6 +451,11 @@ public class ServiceTests {
         candidate.setCategory(Category.SHOPPING);
         candidate.setDescription("All new improved recipe");
         companyService.updateCoupon(candidate);
+
+        Coupon candidate2 = couponRepository.getOne(4);
+        candidate2.setAmount(0);
+        companyService.updateCoupon(candidate2);
+
 
 //todo: write test after solving exception issue
         System.out.println("=== Unsuccessful Coupon Update === ");
@@ -537,6 +559,26 @@ public class ServiceTests {
         Coupon toAdd3 = couponRepository.getOne(1);
         try {
             customerService.AddCouponPurchase(toAdd3);
+            System.out.println("Successful Coupons Purchase");
+        } catch (FailOperationException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.println(" === Unsuccessful purchase attempt. Case:coupon does not exist ===");
+        Coupon toAdd4 = couponRepository.getOne(12);
+        try {
+            customerService.AddCouponPurchase(toAdd4);
+            System.out.println("Successful Coupons Purchase");
+        } catch (FailOperationException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.println(" === Unsuccessful purchase attempt. Case:coupon out of stock ===");
+        Coupon toAdd5 = couponRepository.getOne(4);
+        try {
+            customerService.AddCouponPurchase(toAdd5);
             System.out.println("Successful Coupons Purchase");
         } catch (FailOperationException e) {
             System.out.println(e.getMessage());

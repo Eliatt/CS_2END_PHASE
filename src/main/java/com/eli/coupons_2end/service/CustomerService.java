@@ -25,6 +25,7 @@ public class CustomerService extends ClientService {
     }
 
     private int customerId;
+    private int couponId;
 
 
     @Override
@@ -45,6 +46,9 @@ public class CustomerService extends ClientService {
 
     public boolean AddCouponPurchase(Coupon coupon) throws FailOperationException {
         for (Coupon toAdd : getCustomerCoupons()) {
+            if (!couponRepository.existsById(coupon.getId())){
+                throw new FailOperationException("Coupon Does not Exist");
+            }
             if (toAdd.getId() == couponRepository.getByCompanyIdAndTitle(coupon.getCompanyId(), coupon.getTitle()).getId()) {
                 throw new FailOperationException(
                         "Customer Already purchased this coupon");
@@ -52,8 +56,8 @@ public class CustomerService extends ClientService {
         }
         if (coupon.getAmount() == 0) {
             throw new FailOperationException("This coupon out of stock");
-
-        } else if (coupon.getEndDate().isBefore(LocalDate.now())) {
+        }
+         if (coupon.getEndDate().isBefore(LocalDate.now())) {
             throw new FailOperationException("This coupon has expired");
 
         } else {
