@@ -533,8 +533,8 @@ public class ServiceTests {
         }
 
 
-        System.out.println(" === Unsuccessful Add coupon purchase attempt ===");
-        Coupon toAdd3 = couponRepository.getOne(5);
+        System.out.println(" === Unsuccessful purchase attempt. Case:double purchase ===");
+        Coupon toAdd3 = couponRepository.getOne(1);
         try {
             customerService.AddCouponPurchase(toAdd3);
             System.out.println("Successful Coupons Purchase");
