@@ -408,6 +408,22 @@ public class ServiceTests {
             System.out.println(e.getMessage());
         }
 
+        Coupon coupon8 = new Coupon(
+                1,
+                Category.FOOD,
+                "Greg Cafe",
+                "Cookies Basket",
+                LocalDate.now().minusYears(1),
+                LocalDate.now().minusWeeks(2),
+                89,
+                69.99,
+                "https://cdn.pixabay.com/photo/2017/11/04/17/26/christmas-cookies-2918172_960_720.jpg");
+        try {
+            companyService.addCoupon(coupon8);
+        } catch (FailOperationException e) {
+            System.out.println(e.getMessage());
+        }
+
 
         System.out.println("=== Add Coupon. Case: wrong company ID === ");
         Coupon coupon5 = new Coupon(
@@ -583,6 +599,21 @@ public class ServiceTests {
         } catch (FailOperationException e) {
             System.out.println(e.getMessage());
         }
+
+
+        System.out.println(" === Unsuccessful purchase attempt. Case:coupon has expired ===");
+        Coupon toAdd6 = couponRepository.getOne(5);
+        try {
+            customerService.AddCouponPurchase(toAdd6);
+            System.out.println("Successful Coupons Purchase");
+        } catch (FailOperationException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.println(" === Get Customer's Coupons ===");
+        System.out.println("All customer's coupons: " + customerService.getCustomerCoupons());
+
 
 
     }
