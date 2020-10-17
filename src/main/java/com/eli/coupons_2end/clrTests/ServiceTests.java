@@ -424,6 +424,23 @@ public class ServiceTests {
             System.out.println(e.getMessage());
         }
 
+        Coupon coupon9 = new Coupon(
+                1,
+                Category.SPORTS,
+                "Boxing Gloves",
+                "Finest PU Boxing gloves",
+                LocalDate.now().minusYears(1),
+                LocalDate.now().minusWeeks(4),
+                60,
+                250,
+                "https://cdn.pixabay.com/photo/2014/08/11/09/02/boxing-415394_960_720.jpg");
+        try {
+            companyService.addCoupon(coupon9);
+        } catch (FailOperationException e) {
+            System.out.println(e.getMessage());
+        }
+
+
 
         System.out.println("=== Add Coupon. Case: wrong company ID === ");
         Coupon coupon5 = new Coupon(
@@ -615,9 +632,24 @@ public class ServiceTests {
         System.out.println("All customer's coupons: " + customerService.getCustomerCoupons());
 
 
+        System.out.println(" === Remove Coupon Purchase ===");
+        Coupon toRemove = couponRepository.getOne(2);
+            try {
+                customerService.RemoveCouponPurchase(toRemove);
+            } catch (DoesNotExistException e) {
+                System.out.println(e.getMessage());
+            }
 
+        System.out.println("=== Customers Coupons by Category === ");
+        System.out.println(customerService.customerCouponsByCategory(Category.LIFE_STYLE));
+
+
+        System.out.println("=== Customers Coupons by Max price === ");
+        System.out.println(customerService.customerCouponsByMaxPrice(300));
+
+    }
     }
 
 
-}
+
 
