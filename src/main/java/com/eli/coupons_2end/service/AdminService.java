@@ -8,21 +8,18 @@ import com.eli.coupons_2end.exceptions.LoginException;
 import com.eli.coupons_2end.repository.CompanyRepository;
 import com.eli.coupons_2end.repository.CouponRepository;
 import com.eli.coupons_2end.repository.CustomerRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Lazy
 public class AdminService extends ClientService {
 
-    public AdminService(CompanyRepository companyRepository,
-                        CustomerRepository customerRepository,
-                        CouponRepository couponRepository) {
-        super(companyRepository,
-                customerRepository,
-                couponRepository);
+    public AdminService() {
+        super();
     }
-
     @Override
     public boolean login(String email, String password) throws LoginException {
         if (email.equals("admin@admin.com") && password.equals("admin")) {

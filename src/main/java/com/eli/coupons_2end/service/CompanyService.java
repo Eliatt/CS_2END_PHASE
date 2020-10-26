@@ -9,12 +9,14 @@ import com.eli.coupons_2end.exceptions.LoginException;
 import com.eli.coupons_2end.repository.CompanyRepository;
 import com.eli.coupons_2end.repository.CouponRepository;
 import com.eli.coupons_2end.repository.CustomerRepository;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Scope("prototype")
 public class CompanyService extends ClientService {
 
 
@@ -23,12 +25,8 @@ public class CompanyService extends ClientService {
     private Coupon coupon;
 
 
-    public CompanyService(CompanyRepository companyRepository,
-                          CustomerRepository customerRepository,
-                          CouponRepository couponRepository) {
-        super(companyRepository,
-                customerRepository,
-                couponRepository);
+    public CompanyService() {
+        super();
     }
 
 
@@ -90,9 +88,13 @@ public class CompanyService extends ClientService {
 
     }
 
+
+
+
     public List<Coupon> getAllCoupons() {
         return getCompany().getCoupons();
     }
+
 
     public List<Coupon> getCouponsByCategory(Category category) {
         List<Coupon> coupons = new ArrayList<>();

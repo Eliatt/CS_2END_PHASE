@@ -12,8 +12,11 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Component
-//switch matchIfMissing = true/false to activate/deactivate task on SchedulingConfiguration class.
-//set job time intervals on application.properties.
+/*
+operating instructions notes:
+1.  on config.SchedulingConfiguration class : switch matchIfMissing = true/false to activate/deactivate task .
+2. on resources.application.properties : set job time intervals .
+*/
 public class CleaningTask {
     @Autowired
     private CouponRepository couponRepository;
@@ -25,11 +28,6 @@ public class CleaningTask {
     void cleaningTask() throws InterruptedException {
         for (Coupon coupon : couponRepository.findAll()) {
             if (coupon.getEndDate().isBefore(LocalDate.now())) {
-                try {
-                    customerService.RemoveCouponPurchase(coupon);
-                } catch (DoesNotExistException e) {
-                    System.out.println(e.getMessage());
-                }
                 couponRepository.delete(coupon);
                 System.out.println("Cleaning Expired Coupons in action : "
                         + coupon.getTitle()

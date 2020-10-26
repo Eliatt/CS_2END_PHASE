@@ -441,7 +441,6 @@ public class ServiceTests {
         }
 
 
-
         System.out.println("=== Add Coupon. Case: wrong company ID === ");
         Coupon coupon5 = new Coupon(
                 3,
@@ -492,6 +491,14 @@ public class ServiceTests {
 
 //todo: write test after solving exception issue
         System.out.println("=== Unsuccessful Coupon Update === ");
+        try {
+            Coupon toUpdate = companyService.getCoupon(13);
+            toUpdate.setCategory(Category.SHOPPING);
+            toUpdate.setDescription("All new improved recipe");
+            companyService.updateCoupon(toUpdate);
+        } catch (DoesNotExistException e) {
+            System.out.println(e.getMessage());
+        }
 
 
         System.out.println("=== Get Coupon === ");
@@ -634,11 +641,11 @@ public class ServiceTests {
 
         System.out.println(" === Remove Coupon Purchase ===");
         Coupon toRemove = couponRepository.getOne(2);
-            try {
-                customerService.RemoveCouponPurchase(toRemove);
-            } catch (DoesNotExistException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            customerService.RemoveCouponPurchase(toRemove);
+        } catch (DoesNotExistException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("=== Customers Coupons by Category === ");
         System.out.println(customerService.customerCouponsByCategory(Category.LIFE_STYLE));
@@ -648,7 +655,7 @@ public class ServiceTests {
         System.out.println(customerService.customerCouponsByMaxPrice(300));
 
     }
-    }
+}
 
 
 

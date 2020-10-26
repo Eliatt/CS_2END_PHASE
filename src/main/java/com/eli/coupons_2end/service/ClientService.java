@@ -5,23 +5,20 @@ import com.eli.coupons_2end.repository.CompanyRepository;
 import com.eli.coupons_2end.repository.CouponRepository;
 import com.eli.coupons_2end.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 
+@Service
+@Lazy
 public abstract class ClientService {
 
+    @Autowired
     protected CompanyRepository companyRepository;
+    @Autowired
     protected CustomerRepository customerRepository;
+    @Autowired
     protected CouponRepository couponRepository;
 
-    @Autowired
-    public ClientService(
-            CompanyRepository companyRepository,
-            CustomerRepository customerRepository,
-            CouponRepository couponRepository) {
-
-        this.companyRepository = companyRepository;
-        this.customerRepository = customerRepository;
-        this.couponRepository = couponRepository;
-    }
 
     public abstract boolean login(String email, String password) throws LoginException;
 }

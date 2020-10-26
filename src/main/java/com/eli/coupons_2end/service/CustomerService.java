@@ -6,9 +6,7 @@ import com.eli.coupons_2end.beans.Customer;
 import com.eli.coupons_2end.exceptions.DoesNotExistException;
 import com.eli.coupons_2end.exceptions.FailOperationException;
 import com.eli.coupons_2end.exceptions.LoginException;
-import com.eli.coupons_2end.repository.CompanyRepository;
-import com.eli.coupons_2end.repository.CouponRepository;
-import com.eli.coupons_2end.repository.CustomerRepository;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,18 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Scope("prototype")
 public class CustomerService extends ClientService {
 
-
-    public CustomerService(CompanyRepository companyRepository,
-                           CustomerRepository customerRepository,
-                           CouponRepository couponRepository) {
-        super(companyRepository,
-                customerRepository,
-                couponRepository);
-    }
-
     private int customerId;
+
+    public CustomerService() {
+        super();
+    }
 
 
     @Override
@@ -98,8 +92,7 @@ public class CustomerService extends ClientService {
     }
 
 
-
-        public boolean RemoveCouponPurchase(Coupon coupon) throws DoesNotExistException {
+    public boolean RemoveCouponPurchase(Coupon coupon) throws DoesNotExistException {
         for (Coupon toRemove : getCustomerCoupons()) {
             if (!couponRepository.existsById(coupon.getId())) {
                 throw new DoesNotExistException("Coupon Does not Exist");
