@@ -489,7 +489,6 @@ public class ServiceTests {
         companyService.updateCoupon(candidate2);
 
 
-//todo: write test after solving exception issue
         System.out.println("=== Unsuccessful Coupon Update === ");
         try {
             Coupon toUpdate = companyService.getCoupon(13);

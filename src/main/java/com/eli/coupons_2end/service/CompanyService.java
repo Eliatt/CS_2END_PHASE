@@ -59,7 +59,6 @@ public class CompanyService extends ClientService {
 
     }
 
-    //todo: fix exception DoesNotExistException issue
     public void updateCoupon(Coupon coupon) throws DoesNotExistException {
         if (!couponRepository.existsById(coupon.getId())) {
             throw new DoesNotExistException("Coupon by this ID does not exist");
