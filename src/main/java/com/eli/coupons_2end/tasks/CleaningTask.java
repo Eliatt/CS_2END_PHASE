@@ -24,8 +24,8 @@ public class CleaningTask {
     private CustomerService customerService;
 
 
-    @Scheduled(initialDelayString = "PT5S", fixedDelayString = "${cleaningTask.delay}")
-    void cleaningTask() throws InterruptedException {
+    @Scheduled(initialDelayString = "PT2S", fixedDelayString = "${cleaningTask.delay}")
+    void cleaningTask() {
         for (Coupon coupon : couponRepository.findAll()) {
             if (coupon.getEndDate().isBefore(LocalDate.now())) {
                 couponRepository.delete(coupon);
@@ -34,6 +34,7 @@ public class CleaningTask {
                         + "  has expired, therefore removed from database");
                 System.out.println("now is " + new Date());
             }
+
         }
     }
 }

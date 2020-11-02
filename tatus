@@ -1,0 +1,53 @@
+[33mcommit ef3c5b28ed4d2e7208e2e5f5c67c8ebbeb1da565[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Mon Oct 26 15:43:02 2020 +0200
+
+    cosmetics
+
+[33mcommit 543764f5df729b3e742fe516971f45ebb67a2338[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Mon Oct 26 15:39:51 2020 +0200
+
+    fixes
+
+[33mcommit 6fc6ea4c92c9874a8f11a4ea0f682a9dfae18adf[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Sat Oct 17 11:07:12 2020 +0300
+
+    Scheduled task
+
+[33mcommit 84b36ced77f57fa22359906897d0d2a9c7eff376[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Fri Oct 16 13:57:29 2020 +0300
+
+    service tests addition
+
+[33mcommit 839a57b3f55da38596f7ae5b82e170577cd45523[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Fri Oct 16 12:03:00 2020 +0300
+
+    minor fixes
+
+[33mcommit 4659781de82e34ab80279d9d32cedab16a473fdd[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Fri Oct 16 11:04:14 2020 +0300
+
+    minor fixes
+
+[33mcommit 5d51c236b45338b698a04da4d1a5de72ecda5592[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Fri Oct 16 10:47:01 2020 +0300
+
+    small fixes
+
+[33mcommit 86b2f48d665a5dc14dc292f831d079f8e5da7c48[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Thu Oct 15 22:34:29 2020 +0300
+
+    tests
+
+[33mcommit c5a12bbcb33a159ebacdced47338052caf1aaccf[m
+Author: Eliatt <eli.attias@gmail.com>
+Date:   Thu Oct 15 20:28:04 2020 +0300
+
+    initial commit

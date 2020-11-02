@@ -6,16 +6,18 @@ import com.eli.coupons_2end.service.ClientService;
 import com.eli.coupons_2end.service.CompanyService;
 import com.eli.coupons_2end.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class LoginManager {
     @Autowired
     private AdminService adminService;
-    @Autowired
     private CompanyService companyService;
-    @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private ApplicationContext ctx;
 
     public ClientService login(String email, String password, ClientType clientType) throws Exception {
 
@@ -26,6 +28,7 @@ public class LoginManager {
             }
         }
         if (clientType.equals(ClientType.COMPANY)) {
+            companyService = ctx.getBean(CompanyService.class);
             boolean login = companyService.login(email, password);
             if (login) {
                 return companyService;
@@ -33,6 +36,9 @@ public class LoginManager {
 
         }
         if (clientType.equals(ClientType.CUSTOMER)) {
+            customerService = ctx.getBean(CustomerService.class);
+
+
             boolean login = customerService.login(email, password);
             if (login) {
                 return customerService;
